@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,17 +14,27 @@
     <header>
       <% if user_signed_in? %>
        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-       </li>
-      <% else %>
+         <%= link_to "Users", new_book_path %>
        <li>
-         <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
        </li>
-       <li>
-         <%= link_to "ログイン", new_user_session_path %>
-       </li>
-      <% end %>
-    </header>
-    <%= yield %>
+    <% else %>
+      <%= link_to "Bookers", root_path %>
+      <%= link_to "Homes", root_path %>
+      <%= link_to "About", about_path %>
+      <%= link_to "Sign up", new_user_registration_path %>
+      <%= link_to "Log in", new_user_session_path %>
+    <% end %>
+  </header>
+  <%= yield %>
+    <footer>
+      <div class="container mt5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
