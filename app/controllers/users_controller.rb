@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update(user_params)
-      redirect_to books_path(@book), notice: "ユーザー情報を更新しました"
+      redirect_to books_path, notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
