@@ -1,1 +1,44 @@
 <h4>User index</h4>
+
+<h1>User info</h1>
+<% if params[:name] == "create_book" %>
+ <% if book.image.present? %>
+  <%= image_tag book.image.url, size: "200x200" %>
+ <% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+ <% end %>
+ 
+ <h4>名前</h4>
+ <h4>自己紹介文</h4>
+ <% user = book.user %>
+ <%= link_to 'edit', edit_user_path(user) %>
+<% else %>
+  <%= image_tag 'no_image', size: "200x200" %>
+<% end %>
+
+ <h1>New book</h1>
+
+ <%= form_with model: @book do |f| %>
+ <h4>本のタイトル</h4>
+ <%= f.text_field :title %>
+
+ <h4>感想</h4>
+ <%= f.text_area :body %>
+
+ <%= f.submit 'create Book' %>
+ <% end %>
+
+<% if @books.present? %>
+ <% @books.each do |book| %>
+  <% if book.image.present? %>
+   <%= image_tag first_book.image.url, size: "200x200" %>
+  <% else %>
+   <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+  <h1>Books</h1>
+  <h4>本のタイトル</h4>
+  <h4>感想</h4>
+  <% end %>
+ <% end %>
+</body>
+</html>

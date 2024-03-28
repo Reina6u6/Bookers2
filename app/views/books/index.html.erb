@@ -1,23 +1,13 @@
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
- 
+
 <h1>User info</h1>
-<% if params[:name] == "create_book" %>
- <% if book.image.present? %>
-  <%= image_tag book.image.url, size: "200x200" %>
- <% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
- <% end %>
+<%= image_tag @user.get_image %>
+
  <h4>名前</h4>
+ <%= @user.name %>
  <h4>自己紹介文</h4>
- <% user = book.user %>
- <%= link_to 'edit', edit_user_path(user) %>
-<% else %>
-  <%= image_tag 'no_image', size: "200x200" %>
-<% end %>
+ <%= @user.introduction %>
+ <%= link_to 'edit', edit_user_path(@user) %>
+
 
  <h1>New book</h1>
 
@@ -31,17 +21,15 @@
  <%= f.submit 'create Book' %>
  <% end %>
 
-<% if @books.present? %>
+ <h1>Books</h1>
  <% @books.each do |book| %>
-  <% if book.image.present? %>
-   <%= image_tag first_book.image.url, size: "200x200" %>
-  <% else %>
-   <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-  <h1>Books</h1>
+
+
+
   <h4>本のタイトル</h4>
+   <%= book.title %>
   <h4>感想</h4>
+   <%= book.body %>
   <% end %>
- <% end %>
-</body>
-</html>
+
+
