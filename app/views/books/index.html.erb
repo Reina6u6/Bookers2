@@ -23,8 +23,10 @@
 
  <h1>Books</h1>
  <% @books.each do |book| %>
+ <%= image_tag book.user.get_profile_image %>
+
   <h4>本のタイトル</h4>
-   <%= book.title %>
+   <%= link_to book.title, book_path(book)%>
   <h4>感想</h4>
    <%= book.body %>
   <% end %>
