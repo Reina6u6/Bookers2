@@ -1,5 +1,5 @@
 <h1>User info</h1>
-<%= image_tag @user.get_image %>
+<%= image_tag @user.get_profile_image %>
 
  <h4>名前</h4>
  <%= @user.name %>
@@ -12,24 +12,23 @@
 
  <h1>New book</h1>
 
- <%= form_with model: @book do |f| %>
+ <%= form_with model: @book, method: :post do |f| %>
  <h4>本のタイトル</h4>
  <%= f.text_field :title %>
 
  <h4>感想</h4>
  <%= f.text_area :body %>
 
- <%= f.submit 'create Book' %>
+ <%= f.submit 'Create Book' %>
  <% end %>
 
- <h1>Books</h1>
- <% @books.each do |book| %>
+ <h1>Users</h1>
+ <% @users.each do |user| %>
+ <h4>画像</h4>
+  <%= user.name %>
+ <h4>名前</h4>
+  <%= user.name %>
 
-
-
-  <h4>本のタイトル</h4>
-   <%= book.title %>
-  <h4>感想</h4>
-   <%= book.body %>
-  <% end %>
+  <%= link_to 'Show', user_path %>
+ <% end %>
 

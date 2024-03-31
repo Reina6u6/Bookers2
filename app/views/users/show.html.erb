@@ -1,10 +1,44 @@
+<!--<h1>User info</h1>-->
+<!--<%= form_with model: @user do |f| %>-->
+<!--  <h4>名前</h4>-->
+<!--  <%= f.file_field :name %>-->
+<!--  <h4>画像</h4>-->
+<!--  <%= f.file_field :image, accept: "image/*" %>-->
+<!--  <h4>自己紹介</h4>-->
+<!--  <%= f.text_area :introduction%>-->
+<!--  <%= f.submit 'Update User' %>-->
+<!--<% end %>-->
+
+
 <h1>User info</h1>
-<%= form_with model: @user do |f| %>
-  <h4>名前</h4>
-  <%= f.file_field :name %>
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>自己紹介</h4>
-  <%= f.text_area :introduction%>
-  <%= f.submit 'Update User' %>
-<% end %>
+<%= image_tag @user.get_profile_image %>
+
+ <h4>名前</h4>
+ <%= @user.name %>
+ <h4>自己紹介文</h4>
+ <%= @user.introduction %>
+
+ <%= link_to 'edit', edit_user_path(@user) %>
+
+
+
+ <h1>New book</h1>
+
+ <%= form_with model: @book, method: :post do |f| %>
+ <h4>本のタイトル</h4>
+ <%= f.text_field :title %>
+
+ <h4>感想</h4>
+ <%= f.text_area :body %>
+
+ <%= f.submit 'Create Book' %>
+ <% end %>
+
+ <h1>Books</h1>
+
+
+  <h4>本のタイトル</h4>
+   <%= @books.title %>
+  <h4>感想</h4>
+   <%= @books.body %>
+

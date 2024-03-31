@@ -2,21 +2,22 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
- 
+
   def create
     @user = User.new(user_params)
     @user.save
-    redirect_to books_path
+    redirect_to book_path
   end
 
   def index
-    @users = User.all
-    @user = User.new
-    @user = current_user
-    @books = Book.all
+  　@users = User.all
+    @book = Book.new
   end
 
   def show
+   @user = User.find(params[:id])
+   @books = @user.books
+   @books = Book.new
   end
 
   def edit
@@ -27,12 +28,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if params[:user][:image].present?
-      @user.image.attach(params[:user][:image])
-    end
-
     if @user.update(user_params)
-      redirect_to users_path, notice: "ユーザー情報を更新しました"
+      redirect_to user_path, notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
@@ -40,6 +37,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.permit(:name, :image, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction)
   end
 end
