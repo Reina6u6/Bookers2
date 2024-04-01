@@ -10,43 +10,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-Ig navbar-dark bg-dark">
-        <div class="container">
-         <%= link_to "Bookers", root_path, class: "bookers-link" %>
-
-
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" ariacontrols="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <li>
-                 <i class="fa-solid fa-house" style="color: #ebedef;"></i></i> <%= link_to "Home", root_path, class: "bookers-link"%>
-              </li>
-
-              <li>
-                <i class="fa-solid fa-link" style="color: #ecedef;"></i> <%= link_to "About", about_path, class: "bookers-link"%>
-              </li>
-
-              <li>
-                <i class="fa-solid fa-user-plus" style="color: #fafcff;"></i> <%= link_to "Sign up", new_user_registration_path, class: "bookers-link"%>
-              </li>
-
-              <li>
-                <i class="fa-solid fa-right-to-bracket" style="color: #f5f5f5;"></i> <%= link_to "Log in", new_user_session_path, class: "bookers-link"%>
-              </li>
-            </ul>
-           </div>
-          </div>
-        </nav>
-      </header>
+  <body></body>
+  </html>
 
 
       <% if user_signed_in? %>
       　 <%= link_to "Bookes", root_path %>
-         <%= link_to "Home", users_path %>
          <%= link_to "Users", users_path %>
          <%= link_to "Books", books_path %>
          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
@@ -60,16 +29,7 @@
       <%= link_to "Log in", new_user_session_path %>
 
     <% end %>
-  </header>
   <%= yield %>
-    <footer>
-      <div class="container mt5">
-        <div class="row">
-          <div class="mx-auto">
-            <p>CopyRight Infratop.inc</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+
+
+
