@@ -1,15 +1,85 @@
-<h1>Editing Book</h1>
+<body>
+ <header>
+  <nav class="navbar navbar-expand-Ig navbar-dark bg-dark">
+   <div class="container">
+    <%= link_to "Bookers", root_path, class: "bookers-link" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" ariacontrols="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+    </button>
 
-<%= form_with model: @book do |f| %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+     <ul class="navbar-nav ml-auto">
+      <li>
+       <i class="fa-solid fa-house" style="color: #ebedef;"></i></i> <%= link_to "Home", user_path(current_user), class: "bookers-link"%>
+      </li>
 
-  <h4>本のタイトル</h4>
-  <%= f.text_field :title %>
-  
-  <h4>感想</h4>
-  <%= f.text_area :body %>
-  
-  <%= f.submit 'Update Book' %>
-  
- <%= link_to 'Show', book_path %>
- <%= link_to 'Back', books_path %>
-<% end %>
+      <li>
+       <i class="fa-solid fa-users" style="color: #ffffff;"></i> <%= link_to "Users", users_path, class: "bookers-link"%>
+      </li>
+
+      <li>
+       <i class="fa-solid fa-book-open" style="color: #f8f9fc;"></i> <%= link_to "Books", books_path, class: "bookers-link"%>
+      </li>
+
+      <li>
+       <i class="fa-solid fa-right-from-bracket" style="color: #f7f7f8;"></i> <%= link_to "Log out", root_path, class: "bookers-link"%>
+      </li>
+      </ul>
+    </div>
+   </div>
+  </nav>
+ </header>
+
+
+ <p id="notice"></p>
+ <div class="container">
+  <div class="row">
+   <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 px-5 px-sm-0">
+   <h1>Editing Book</h1>
+
+   <% if @book.errors.any? %>
+    <%= @book.errors.count %>errors prohibited this obj from being saved:
+     <ul>
+      <% @book.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+     </ul>
+   <% end %>
+   <%= form_with model: @book do |f| %>
+   </div>
+
+
+   <div class="col-sm-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 px-5 px-sm-0">
+
+     <h4>本のタイトル</h4>
+     <%= f.text_field :title %>
+
+
+
+      <h4>感想</h4>
+      <%= f.text_area :body %>
+
+
+      <%= f.submit 'Update Book',name: "create_book", class: "btn btn-success" %>
+      <% end %>
+
+     <div class="form-group">
+      <%= link_to 'Show', book_path %>
+
+   　　<%= link_to 'Back', books_path %>
+     </div>
+
+    </div>
+   </div>
+  </div>
+
+  <footer>
+   <div class="container mt5">
+    <div class="row">
+     <div class="mx-auto">
+      <p>CopyRight Infratop.inc</p>
+     </div>
+    </div>
+   </div>
+  </footer>
+</body>

@@ -1,34 +1,146 @@
-
-<h1>User info</h1>
-<%= image_tag @user.get_profile_image %>
-
- <h4>名前</h4>
- <%= @user.name %>
- <h4>自己紹介文</h4>
- <%= @user.introduction %>
- <%= link_to 'edit', edit_user_path(@user) %>
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
 
 
- <h1>New book</h1>
+<body>
+ <header>
+  <nav class="navbar navbar-expand-Ig navbar-dark bg-dark">
+   <div class="container">
+    <%= link_to "Bookers", root_path, class: "bookers-link" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" ariacontrols="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+    </button>
 
- <%= form_with model: @book, method: :post do |f| %>
- <h4>本のタイトル</h4>
- <%= f.text_field :title %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+     <ul class="navbar-nav ml-auto">
+      <li>
+       <i class="fa-solid fa-house" style="color: #ebedef;"></i></i> <%= link_to "Home", users_path, class: "bookers-link"%>
+      </li>
 
- <h4>感想</h4>
- <%= f.text_area :body %>
+      <li>
+       <i class="fa-solid fa-users" style="color: #ffffff;"></i> <%= link_to "Users", users_path, class: "bookers-link"%>
+      </li>
 
- <%= f.submit 'create Book' %>
- <% end %>
+      <li>
+       <i class="fa-solid fa-book-open" style="color: #f8f9fc;"></i> <%= link_to "Books", books_path, class: "bookers-link"%>
+      </li>
 
- <h1>Books</h1>
- <% @books.each do |book| %>
- <%= image_tag book.user.get_profile_image %>
+      <li>
+       <i class="fa-solid fa-right-from-bracket" style="color: #f7f7f8;"></i> <%= link_to "Log out", root_path, class: "bookers-link"%>
+      </li>
+     </ul>
+    </div>
+   </div>
+  </nav>
+ </header>
 
-  <h4>本のタイトル</h4>
-   <%= link_to book.title, book_path(book)%>
-  <h4>感想</h4>
-   <%= book.body %>
+<div class="container px-5 px-sm-0">
+ <div class="row">
+  <div class="col-md-3">
+  <h1>User info</h1>
+  <%= image_tag @user.get_profile_image %>
+
+
+
+  <table class="table">
+   <tbody>
+    <tr></tr>
+     <tr>
+     <th>名前</th>
+     <th><%= @user.name %></th>
+     </tr>
+     <tr>
+      <th>自己紹介文</th>
+      <th><%= @user.introduction %></th>
+     </tr>
+   </tbody>
+  </table>
+
+  <%= link_to edit_user_path(@user) do %>
+   <div class="border text-center" style="padding: 10px;">
+    <span style="display: inline-block;">
+     <i class="fa-solid fa-user-gear" style="color: #afb1b6;"></i>
+    </span>
+   </div>
   <% end %>
+
+
+  <h1 class="mt-3">New book</h1>
+  <% if @book.errors.any? %>
+   <%= @book.errors.count %>errors prohibited this obj from being saved:
+   <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+   </ul>
+  <% end %>
+
+
+
+
+  <%= form_with model: @book, method: :post do |f| %>
+   <div class="form-group">
+    <h4>本のタイトル</h4>
+    <%= f.text_field :title %>
+   </div>
+
+   <div class="form-group">
+    <h4>感想</h4>
+    <%= f.text_area :body %>
+   </div>
+
+
+   <%= f.submit 'create Book',class: 'btn btn-success' %>
+   <% end %>
+  </div>
+
+  <div class="col-md-8 offset-md-1">
+  <h1>Books</h1>
+  <table class="table">
+   <thead>
+    <tr>
+     <th></th>
+     <th>本のタイトル</th>
+     <th>感想</th>
+
+    </tr>
+   </thead>
+   <tbody>
+    <% @books.each do |book| %>
+    <tr>
+     <td><%= image_tag book.user.get_profile_image %></td>
+     <td><%= link_to book.title, book_path(book)%></td>
+     <td><%= book.body %></td>
+    </tr>
+    <% end %>
+   </tbody>
+  </table>
+ </div>
+</div>
+</div>
+
+<footer>
+   <div class="container mt5">
+    <div class="row">
+     <div class="mx-auto">
+      <p>CopyRight Infratop.inc</p>
+     </div>
+    </div>
+   </div>
+  </footer>
+
+</body>
+
+
+
+
+
+
+
+
+
 
 
